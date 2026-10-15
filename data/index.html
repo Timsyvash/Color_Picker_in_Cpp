@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESP8266 Color Picker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background: #f4f4f9;
+        }
+
+        .slider-container {
+            margin: 20px auto;
+            max-width: 300px;
+        }
+
+        label {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type=range] {
+            width: 100%;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>ESP8266 RGB LED Control</h2>
+
+    <div class="slider-container">
+        <label for="red" style="color: red;">Red: <span id="rVal">0</span></label>
+        <input type="range" id="red" min="0" max="255" value="0" oninput="sendColor()">
+    </div>
+
+    <div class="slider-container">
+        <label for="green" style="color: green;">Green: <span id="gVal">0</span></label>
+        <input type="range" id="green" min="0" max="255" value="0" oninput="sendColor()">
+    </div>
+
+    <div class="slider-container">
+        <label for="blue" style="color: blue;">Blue: <span id="bVal">0</span></label>
+        <input type="range" id="blue" min="0" max="255" value="0" oninput="sendColor()">
+    </div>
+
+    <script>
+        function sendColor() {
+            let r = document.getElementById('red').value;
+            let g = document.getElementById('green').value;
+            let b = document.getElementById('blue').value;
+
+            // Оновлюємо цифрові значення на екрані
+            document.getElementById('rVal').innerText = r;
+            document.getElementById('gVal').innerText = g;
+            document.getElementById('bVal').innerText = b;
+
+            // Відправляємо AJAX-запит (Fetch API) без перезавантаження сторінки
+            fetch(`/?red=${r}&green=${g}&blue=${b}`);
+        }
+    </script>
+
+</body>
+
+</html>

@@ -5,8 +5,8 @@
 
 ESP8266WebServer server(80);
 
-const char *ssid = "EpsilonNET";
-const char *password = "zaq123456";
+const char *ssid = "";
+const char *password = "";
 
 unsigned long last_time_serial = 0;
 
